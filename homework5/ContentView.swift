@@ -1,9 +1,14 @@
-//
-//  ContentView.swift
-//  homework5
-//
-//  Created by cisstudent on 8/22/25.
-//
+/**
+ 
+ * Homework 5
+ * Jim Mittler
+ * 22 August 2025
+ 
+ _Italic text_
+ __Bold text__
+ ~~Strikethrough text~~
+
+ */
 
 import SwiftUI
 
