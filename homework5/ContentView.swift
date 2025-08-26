@@ -15,11 +15,12 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
+            
+            Text("Hello my name is Jim.")
+                .fontWidth(.condensed)
             Image("itsme")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello my name is Jim.")
-                .fontWidth(.condensed)
         }
         .padding()
     }
