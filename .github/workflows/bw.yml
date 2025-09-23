@@ -32,6 +32,7 @@ jobs:
       env:
         BWS_ACCESS_TOKEN: ${{ secrets.BW_ACCESS_TOKEN }}
       run: |
+        bws secret get 9d68d23a-51bc-476a-a443-b3600010870f -o value
         echo "APP_STORE_CONNECT_API_KEY_ISSUER_ID=$(bws secret get 9d68d23a-51bc-476a-a443-b3600010870f -o value)" >> "$GITHUB_ENV"
         echo "APP_STORE_CONNECT_API_KEY_KEY_CONTENT=$(bws secret get 91d4a8c5-bab6-4cc9-a2fa-b36000125905 -o value)" >> "$GITHUB_ENV"
         echo "APP_STORE_CONNECT_API_KEY_KEY_ID=$(bws secret get b01c31ac-6afa-4ae4-83de-b3600010b223 -o value)" >> "$GITHUB_ENV"
