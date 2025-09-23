@@ -1,0 +1,47 @@
+name: Get BW secets
+
+permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "main" ]
+
+concurrency:
+  group: ${{ github.repository}}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+ build-and-test:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Install jq (for parsing) and unzip
+      run: brew install jq unzip
+    - name: Install Bitwarden Secrets Manager CLI (bws)
+      run: |
+        BWS_VERSION="1.0.0" # adjust to current release
+        curl -L -o bws.zip "
+https://github.com/bitwarden/sdk/releases/download/bws-v${BWS_VERSION}/bws-aarch64-apple-darwin-${BWS_VERSION}.zip
+"
+        unzip -q bws.zip -d /usr/local/bin
+        chmod +x /usr/local/bin/bws
+        bws --version
+    - name: Get Secrets via bws
+      env:
+        BWS_ACCESS_TOKEN: ${{ secrets.BW_ACCESS_TOKEN }}
+      run: |
+        echo "APP_STORE_CONNECT_API_KEY_ISSUER_ID=$(bws secret get 9d68d23a-51bc-476a-a443-b3600010870f -o value)" >> "$GITHUB_ENV"
+        echo "APP_STORE_CONNECT_API_KEY_KEY_CONTENT=$(bws secret get 91d4a8c5-bab6-4cc9-a2fa-b36000125905 -o value)" >> "$GITHUB_ENV"
+        echo "APP_STORE_CONNECT_API_KEY_KEY_ID=$(bws secret get b01c31ac-6afa-4ae4-83de-b3600010b223 -o value)" >> "$GITHUB_ENV"
+        echo "FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=$(bws secret get 6b37197b-f0c4-4b4a-9910-b3600011f4a2 -o value)" >> "$GITHUB_ENV"
+        echo "MATCH_GIT_BASIC_AUTHORIZATION=$(bws secret get 069d244e-72c8-44d5-a91f-b360001103a2 -o value)" >> "$GITHUB_ENV"
+        echo "MATCH_PASSWORD=$(bws secret get 6837c89c-4e9f-4f9d-b881-b36000112282 -o value)" >> "$GITHUB_ENV"
+        echo "PAT_TOKEN=$(bws secret get d8d3add3-0e8c-421c-a3a8-b36000117f0c -o value)" >> "$GITHUB_ENV"
+    - name: dump
+      run: env
+
+    
