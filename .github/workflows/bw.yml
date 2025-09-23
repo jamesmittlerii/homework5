@@ -37,7 +37,5 @@ jobs:
         bws secret get 2afaa8d6-cadf-45c9-bdbb-b361011ba3f0 --output env >> $GITHUB_ENV
         bws secret get acef0f47-efa1-4036-9584-b361011ba349 --output env >> $GITHUB_ENV
         bws secret get e70fbaf0-de89-4a23-a70b-b361011ba3a1 --output env >> $GITHUB_ENV
-    - name: dump
-      run: env
 
     
