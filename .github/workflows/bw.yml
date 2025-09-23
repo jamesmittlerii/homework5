@@ -19,8 +19,8 @@ jobs:
  build-and-test:
   runs-on: ubuntu-latest
   steps:
-    - name: Install jq (for parsing) and unzip
-      run: brew install jq unzip
+#    - name: Install jq (for parsing) and unzip
+#      run: brew install jq unzip
     - name: Install Bitwarden Secrets Manager CLI (bws)
       run: |
         BWS_VERSION="1.0.0" # adjust to current release
