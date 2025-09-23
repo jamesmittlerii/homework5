@@ -32,14 +32,11 @@ jobs:
       env:
         BWS_ACCESS_TOKEN: ${{ secrets.BW_ACCESS_TOKEN }}
       run: |
-        bws secret get 9d68d23a-51bc-476a-a443-b3600010870f --output value
-        echo "APP_STORE_CONNECT_API_KEY_ISSUER_ID=$(bws secret get 9d68d23a-51bc-476a-a443-b3600010870f --output value)" >> "$GITHUB_ENV"
-        echo "APP_STORE_CONNECT_API_KEY_KEY_CONTENT=$(bws secret get 91d4a8c5-bab6-4cc9-a2fa-b36000125905 --output value)" >> "$GITHUB_ENV"
-        echo "APP_STORE_CONNECT_API_KEY_KEY_ID=$(bws secret get b01c31ac-6afa-4ae4-83de-b3600010b223 -output value)" >> "$GITHUB_ENV"
-        echo "FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD=$(bws secret get 6b37197b-f0c4-4b4a-9910-b3600011f4a2 -output value)" >> "$GITHUB_ENV"
-        echo "MATCH_GIT_BASIC_AUTHORIZATION=$(bws secret get 069d244e-72c8-44d5-a91f-b360001103a2 -output value)" >> "$GITHUB_ENV"
-        echo "MATCH_PASSWORD=$(bws secret get 6837c89c-4e9f-4f9d-b881-b36000112282 -output value)" >> "$GITHUB_ENV"
-        echo "PAT_TOKEN=$(bws secret get d8d3add3-0e8c-421c-a3a8-b36000117f0c -output value)" >> "$GITHUB_ENV"
+        bws secret get 9bb4989-b39f-43a3-bc4d-b361011cbb23 >> $GITHUB_ENV
+        bws secret get 165e90ae-bed4-41bb-9ec0-b361011ba441 >> $GITHUB_ENV
+        bws secret get 2afaa8d6-cadf-45c9-bdbb-b361011ba3f0 >> $GITHUB_ENV
+        bws secret get acef0f47-efa1-4036-9584-b361011ba349 >> $GITHUB_ENV
+        bws secret get e70fbaf0-de89-4a23-a70b-b361011ba3a1 >> $GITHUB_ENV
     - name: dump
       run: env
 
