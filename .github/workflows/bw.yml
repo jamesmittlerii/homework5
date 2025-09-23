@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
  build-and-test:
-  runs-on: ubuntu-latest
+  runs-on: macos-latest
   steps:
 #    - name: Install jq (for parsing) and unzip
 #      run: brew install jq unzip
